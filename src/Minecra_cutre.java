@@ -13,6 +13,10 @@ public class Minecra_cutre{
         int columnamax = 10;
         int vidas = 0;
         int fin1 = 0;
+        int numlavas = 10;
+        int nummanzanas = 5;
+        int numperlas = 3;
+        int nummuros = 5;
         char Steve = 'S';
         char libre = '·';
         char fin = 'F';
@@ -39,6 +43,10 @@ public class Minecra_cutre{
         } else if (vidas == 5) {
             System.out.println("Tienes 5 vidas");
         }
+
+        System.out.println("Te puedes mover con WASD");
+        System.out.println("Usa I para ver la informacion necesaria");
+        System.out.println("Utiliza M para ve la informacion de las entidades");
 
         // Colocar
         char [][] mundo = new char [filamax][columnamax];
@@ -89,7 +97,7 @@ public class Minecra_cutre{
         }
 
         //Perlas
-        int piezascont = 0;
+        int perlascont = 0;
         for (int i = 0; i < 3; i++) {
             do{
                 filaAl = aleat.nextInt(filamax);
@@ -131,8 +139,7 @@ public class Minecra_cutre{
         // EMPIEZA EL JUEGO !!!
         Scanner lector = new Scanner(System.in);
         do {
-            System.out.println("Te puedes mover con WASD");
-            System.out.print("Dime una letra para moverte por el mundo: ");
+            System.out.print("Dime el movimiento: ");
             char mov = lector.next().charAt(0);
             int filaAnteriorSteve = filaOficialSteve;
             int columnaAnteriorSteve = columnaOficialSteve;
@@ -148,6 +155,19 @@ public class Minecra_cutre{
                     break;
                 case 'D':
                     columnaOficialSteve ++;
+                    break;
+                case 'I':
+                    System.out.println("Tienes " + vidas + " vidas");
+                    System.out.println("Tienes " + perlascont + " perlas");
+                    int perlasrestantes = 3 - perlascont;
+                    System.out.println("Te quedan " + perlasrestantes + " para poder finalizar el juego");
+                    System.out.println("Hay " );
+                    break;
+                case 'M':
+                    System.out.println("Tienes que recojer las " + numperlas + " para llegar al final y terminar el nivel");
+                    System.out.println("Hay " + numlavas + " lavas que quitan 1 vida");
+                    System.out.println("Hay " + nummanzanas + " manzanas que te añaden 1 vida");
+                    System.out.println("Hay " + nummuros + " muros que no te dejan pasar");
                     break;
             }
             // Para que no se salga del trablero
@@ -169,15 +189,17 @@ public class Minecra_cutre{
                     mundo[filaOficialSteve][columnaOficialSteve] = Steve;
                     mundo[filaAnteriorSteve][columnaAnteriorSteve] = libre;
                     vidas++;
+                    nummanzanas--;
                 }else if(mundo[filaOficialSteve][columnaOficialSteve] == Lava){
                     mundo[filaOficialSteve][columnaOficialSteve] = Steve;
                     mundo[filaAnteriorSteve][columnaAnteriorSteve] = libre;
                     vidas--;
+                    numlavas = numlavas - 1;
                 }else if(mundo[filaOficialSteve][columnaOficialSteve] == libre){
                     mundo[filaOficialSteve][columnaOficialSteve] = Steve;
                     mundo[filaAnteriorSteve][columnaAnteriorSteve] = libre;
                 }else if(mundo[filaOficialSteve][columnaOficialSteve] == fin) {
-                    if (piezascont==3){
+                    if (perlascont==3){
                         mundo[filaOficialSteve][columnaOficialSteve] = Steve;
                         mundo[filaAnteriorSteve][columnaAnteriorSteve] = libre;
                         System.out.println("Fin del juego");
@@ -186,11 +208,12 @@ public class Minecra_cutre{
                         System.out.println("Necestas tener las perlas de la nave");
                         filaOficialSteve = filaAnteriorSteve;
                         columnaOficialSteve = columnaAnteriorSteve;
+                        numperlas = numperlas - 1;
                     }
                 } else if (mundo[filaOficialSteve][columnaOficialSteve] == perlas){
                     mundo[filaOficialSteve][columnaOficialSteve] = Steve;
                     mundo[filaAnteriorSteve][columnaAnteriorSteve] = libre;
-                    piezascont++;
+                    perlascont++;
                 }
 
             }
@@ -211,18 +234,9 @@ public class Minecra_cutre{
                 System.out.println();
             }
             System.out.println("Tienes " + vidas + " vidas");
-            System.out.println("Tienes " + piezascont + " perlas");
+            System.out.println("Tienes " + perlascont + " perlas");
 
         }while(vidas>0 && fin1 == 0) ;
-
-        // NIVEL 2: escribe aquí el código del segundo nivel
-        if (vidas > 0 && fin1 == 1) {
-            System.out.println("¡Nivel 1 completado!");
-            System.out.println("Aquí empieza el nivel 2.");
-
-            // TODO: crear el tablero y la lógica del nivel 2 aquí
-        }
-
 
     }
 }
