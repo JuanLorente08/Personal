@@ -24,7 +24,7 @@ public class Minecra_cutre{
         // Sistema de vidas
         do {
             System.out.println("Selecciona dificultad");
-            System.out.print("Numero del 1 al 5 (siendo 1 dificil y 5 imposible: ");
+            System.out.print("Numero del 1 al 5 (siendo 1 dificil y 5 gallina: ");
             vidas = leer.nextInt();
         }while (vidas < 1  || vidas > 5);
 
@@ -47,60 +47,69 @@ public class Minecra_cutre{
                 mundo[i][j] = libre;
             }
         }
+        mundo [9][9] = fin;
 
-        // Posicionar las siguientes variables
-        //Fin
-        mundo[9][9] = fin;
-        //Hago el aleatorio
-        Random alea = new Random();
+        // 1 Steve
+        Random aleat = new Random();
         int filaAl = -1;
         int colAl = -1;
         int filaOficialSteve = -1;
         int columnaOficialSteve = -1;
 
-        //Steve
         for (int i = 0; i < 1; i++) {
-            do {
-                filaAl = alea.nextInt(filamax);
-                colAl = alea.nextInt(columnamax);
-            } while (mundo[filaAl][colAl] != libre);
-                mundo[filaAl][colAl] = Steve;
-        }
-        //Lava
-        for (int i = 0; i < 10; i++) {
-            do {
-                filaAl = alea.nextInt(filamax);
-                colAl = alea.nextInt(columnamax);
-            } while (mundo[filaAl][colAl] != libre);
-            mundo[filaAl][colAl] = lava;
-        }
-        //Manzanas
-        for (int i = 0; i < 5; i++) {
-            do {
-                filaAl = alea.nextInt(filamax);
-                colAl = alea.nextInt(columnamax);
-            } while (mundo[filaAl][colAl] != libre);
-            mundo[filaAl][colAl] = manzana;
-        }
-        //Perlas
-        int perlascont = 0;
-        for (int i = 0; i < 3; i++) {
             do{
-                filaAl = alea.nextInt(filamax);
-                colAl = alea.nextInt(columnamax);
+                filaAl = aleat.nextInt(filamax);
+                colAl = aleat.nextInt(columnamax);
             }while(mundo[filaAl][colAl]!=libre);
-            mundo[filaAl][colAl] = perlas;;
+            mundo[filaAl][colAl] = Steve;
         }
+
+        // OFICIALIZO LAS POSICIONES DE MI Steve
+        filaOficialSteve = filaAl;
+        columnaOficialSteve = colAl;
+        // FIN
+
         //Muros
-        for (int i = 0; i < 1; i++) {
-            do {
-                filaAl = alea.nextInt(filamax);
-                colAl = alea.nextInt(columnamax);
-            } while (mundo[filaAl][colAl] != libre);
+        for (int i = 0; i < 10; i++) {
+            do{
+                filaAl = aleat.nextInt(filamax);
+                colAl = aleat.nextInt(columnamax);
+            }while(mundo[filaAl][colAl]!=libre);
             mundo[filaAl][colAl] = muros;
         }
 
-        // Imprimir la matriz al principio para saber donde esta cada cosa
+        //Lava
+        char Lava = 'L';
+        for (int i = 0; i < 7; i++) {
+            do{
+                filaAl = aleat.nextInt(filamax);
+                colAl = aleat.nextInt(columnamax);
+            }while(mundo[filaAl][colAl]!=libre);
+            mundo[filaAl][colAl] = Lava;
+        }
+
+        //Perlas
+        int piezascont = 0;
+        for (int i = 0; i < 3; i++) {
+            do{
+                filaAl = aleat.nextInt(filamax);
+                colAl = aleat.nextInt(columnamax);
+            }while(mundo[filaAl][colAl]!=libre);
+            mundo[filaAl][colAl] = perlas;;
+        }
+
+        for (int i = 0; i < 20; i++) {
+            System.out.println();
+        }
+
+        //Manzana
+        for (int i = 0; i < 5; i++) {
+            do{
+                filaAl = aleat.nextInt(filamax);
+                colAl = aleat.nextInt(columnamax);
+            }while(mundo[filaAl][colAl]!=libre);
+            mundo[filaAl][colAl] = manzana;
+        }
         for (int i = 0; i < filamax; i++) {
             for (int j = 0; j < columnamax; j++) {
                 System.out.print(mundo[i][j] + " ");
@@ -108,11 +117,12 @@ public class Minecra_cutre{
             System.out.println();
         }
 
-        // Juego con movilidad y demas
+        // EMPIEZA EL JUEGO !!!
+        Scanner lector = new Scanner(System.in);
         do {
             System.out.println("Te puedes mover con WASD");
             System.out.print("Dime una letra para moverte por el mundo: ");
-            char mov = leer.next().charAt(0);
+            char mov = lector.next().charAt(0);
             int filaAnteriorSteve = filaOficialSteve;
             int columnaAnteriorSteve = columnaOficialSteve;
             switch (Character.toUpperCase(mov)){ // W, A, S o D
@@ -131,21 +141,24 @@ public class Minecra_cutre{
             }
             // Para que no se salga del trablero
             if(
-                    filaOficialSteve < 0 || filaOficialSteve > 9 || columnaOficialSteve < 0 || columnaOficialSteve > 9
+                    filaOficialSteve < 0 ||
+                            filaOficialSteve > 9 ||
+                            columnaOficialSteve < 0 ||
+                            columnaOficialSteve > 9
             ){
                 System.out.println("Limite del mundo");
                 filaOficialSteve = filaAnteriorSteve;
                 columnaOficialSteve = columnaAnteriorSteve;
             }else{
                 if(mundo[filaOficialSteve][columnaOficialSteve] == muros){
-                    System.out.println("Te has chocado con un muro");
+                    System.out.println("Te has chocado con una caja");
                     filaOficialSteve = filaAnteriorSteve;
                     columnaOficialSteve = columnaAnteriorSteve;
                 }else if(mundo[filaOficialSteve][columnaOficialSteve] == manzana){
                     mundo[filaOficialSteve][columnaOficialSteve] = Steve;
                     mundo[filaAnteriorSteve][columnaAnteriorSteve] = libre;
                     vidas++;
-                }else if(mundo[filaOficialSteve][columnaOficialSteve] == lava){
+                }else if(mundo[filaOficialSteve][columnaOficialSteve] == Lava){
                     mundo[filaOficialSteve][columnaOficialSteve] = Steve;
                     mundo[filaAnteriorSteve][columnaAnteriorSteve] = libre;
                     vidas--;
@@ -153,20 +166,20 @@ public class Minecra_cutre{
                     mundo[filaOficialSteve][columnaOficialSteve] = Steve;
                     mundo[filaAnteriorSteve][columnaAnteriorSteve] = libre;
                 }else if(mundo[filaOficialSteve][columnaOficialSteve] == fin) {
-                    if (perlascont==3){
+                    if (piezascont==3){
                         mundo[filaOficialSteve][columnaOficialSteve] = Steve;
                         mundo[filaAnteriorSteve][columnaAnteriorSteve] = libre;
                         System.out.println("Fin del juego");
                         fin1 = 1;
                     }else {
-                        System.out.println("Necestas tener las piezas de la nave");
+                        System.out.println("Necestas tener las perlas de la nave");
                         filaOficialSteve = filaAnteriorSteve;
                         columnaOficialSteve = columnaAnteriorSteve;
                     }
                 } else if (mundo[filaOficialSteve][columnaOficialSteve] == perlas){
                     mundo[filaOficialSteve][columnaOficialSteve] = Steve;
                     mundo[filaAnteriorSteve][columnaAnteriorSteve] = libre;
-                    perlascont++;
+                    piezascont++;
                 }
 
             }
@@ -177,8 +190,10 @@ public class Minecra_cutre{
                 System.out.println();
             }
             System.out.println("Tienes " + vidas + " vidas");
-            System.out.println("Tienes " + perlascont + " perlas");
+            System.out.println("Tienes " + piezascont + " perlas");
 
         }while(vidas>0 && fin1 == 0) ;
+
+
     }
 }
