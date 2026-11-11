@@ -112,7 +112,18 @@ public class Minecra_cutre{
         }
         for (int i = 0; i < filamax; i++) {
             for (int j = 0; j < columnamax; j++) {
-                System.out.print(mundo[i][j] + " ");
+                // Colores del tablero
+                if (mundo[i][j] == lava) {
+    System.out.print("\u001B[38;5;208m" + mundo[i][j] + "\u001B[0m ");
+} else if (mundo[i][j] == perlas) {
+    System.out.print("\u001B[32m" + mundo[i][j] + "\u001B[0m ");
+} else if (mundo[i][j] == manzana) {
+    System.out.print("\u001B[31m" + mundo[i][j] + "\u001B[0m ");
+} else if (mundo[i][j] == Steve) {
+    System.out.print("\u001B[36m" + mundo[i][j] + "\u001B[0m ");
+} else {
+    System.out.print(mundo[i][j] + " ");
+}
             }
             System.out.println();
         }
@@ -185,7 +196,17 @@ public class Minecra_cutre{
             }
             for (int i = 0; i < filamax; i++) {
                 for (int j = 0; j < columnamax; j++) {
-                    System.out.print(mundo[i][j] + " ");
+                    // Colores del tablero
+                if (mundo[i][j] == lava) {
+                    System.out.print("\u001B[38;5;208m" + mundo[i][j] + "\u001B[0m ");
+                } else if (mundo[i][j] == perlas) {
+                    System.out.print("\u001B[32m" + mundo[i][j] + "\u001B[0m ");
+                } else if (mundo[i][j] == manzana) {
+                    System.out.print("\u001B[31m" + mundo[i][j] + "\u001B[0m ");
+                } else if (mundo[i][j] == Steve) {
+                    System.out.print("\u001B[36m" + mundo[i][j] + "\u001B[0m ");
+                } else {
+                    System.out.print(mundo[i][j] + " ");}
                 }
                 System.out.println();
             }
