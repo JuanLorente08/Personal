@@ -215,6 +215,14 @@ public class Minecra_cutre{
 
         }while(vidas>0 && fin1 == 0) ;
 
+        // NIVEL 2: escribe aquí el código del segundo nivel
+        if (vidas > 0 && fin1 == 1) {
+            System.out.println("¡Nivel 1 completado!");
+            System.out.println("Aquí empieza el nivel 2.");
+
+            // TODO: crear el tablero y la lógica del nivel 2 aquí
+        }
+
 
     }
 }
