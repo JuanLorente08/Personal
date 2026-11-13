@@ -17,6 +17,7 @@ public class Minecra_cutre{
         int nummanzanas = 5;
         int numperlas = 3;
         int nummuros = 5;
+        int contnivel = 0;
         char Steve = 'S';
         char libre = '·';
         char fin = 'F';
@@ -104,10 +105,6 @@ public class Minecra_cutre{
                 colAl = aleat.nextInt(columnamax);
             }while(mundo[filaAl][colAl]!=libre);
             mundo[filaAl][colAl] = perlas;;
-        }
-
-        for (int i = 0; i < 20; i++) {
-            System.out.println();
         }
 
         //Manzana
@@ -236,7 +233,11 @@ public class Minecra_cutre{
             System.out.println("Tienes " + vidas + " vidas");
             System.out.println("Tienes " + perlascont + " perlas");
 
-        }while(vidas>0 && fin1 == 0) ;
+        }while(vidas>0 && fin1 == 0);
+        contnivel++;
+        if (contnivel = 1){
+            System.out.println("Enorabena has pasado al siguiente nivel");
+        }
 
     }
 }
