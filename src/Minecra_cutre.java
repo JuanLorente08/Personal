@@ -235,9 +235,9 @@ public class Minecra_cutre{
 
         }while(vidas>0 && fin1 == 0);
         contnivel++;
-        if (contnivel = 1){
-            System.out.println("Enorabena has pasado al siguiente nivel");
-        }
 
+        if (contnivel == 1){
+            System.out.println("Enorabuena te has pasado minecraft, es ora de pasarse otro juego mas dificil como LA VIDA");
+        }
     }
 }
